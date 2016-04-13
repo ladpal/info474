@@ -1,5 +1,7 @@
 $(document).ready(function() {
 
+    //Trace for the negative gram staining bacteria types and their associated MIC values
+    //creates a scatter plot
     var trace1 = {
         x: ['Aerobacter aerogenes', 'Brucella abortus', 'Escherichia coli', 'Klebsiella pneumoniae', 'Mycobacterium tuberculosis', 'Proteus vulgaris', 'Pseudomonas aeruginosa', 'Salmonella (Eberthella) typhosa', 'Salmonella schottmuelleri'],
         y: [1, 2, .4, 1.2, 5, .1, 2, .4, .8],
@@ -17,6 +19,8 @@ $(document).ready(function() {
         },
     };
 
+    //Trace for the positive gram staining bacteria types and their associated MIC values
+    //creates a scatter plot
     var trace2 = {
         x: ['Brucella anthracis', 'Diplococcus pneumoniae',  'Staphylococcus albus', 'Staphylococcus aureus', 'Streptococcus fecalis', 'Streptococcus hemolyticus', 'Streptococcus viridans'],
         y: [0.01, 11, .1, .03, 1, 14, 10],
@@ -35,7 +39,8 @@ $(document).ready(function() {
     };
 
     var data1 = [ trace1, trace2 ];
-
+    
+    //layout specifications for the trace1 and trace2
     var layout1 = {
         xaxis: {
             type:"category",
@@ -56,8 +61,11 @@ $(document).ready(function() {
         title:'Gram Staining vs. the MIC of Streptomycin'
     };
     
+    //plotting the scatterplot with the given specifications 
     Plotly.newPlot('graphStrep', data1, layout1, {staticPlot: true});
     
+    //trace of negative gram staining bacterias and their associated MIC values for streptomycin
+    //creates a horizontal grouped bar chart
     var trace3 = {
         orientation: 'h',
         y: ['Aerobacter aerogenes', 'Brucella abortus', 'Escherichia coli', 'Klebsiella pneumoniae', 'Mycobacterium tuberculosis', 'Proteus vulgaris', 'Pseudomonas aeruginosa', 'Salmonella (Eberthella) typhosa', 'Salmonella schottmuelleri'],
@@ -70,6 +78,8 @@ $(document).ready(function() {
         mode: 'markers+text',
     };
     
+    //trace of negative gram staining bacterias and their associated MIC values for neomycin
+    //creates a horizontal grouped bar chart
     var trace4 = {
         orientation: 'h',
         y: ['Aerobacter aerogenes', 'Brucella abortus', 'Escherichia coli', 'Klebsiella pneumoniae', 'Mycobacterium tuberculosis', 'Proteus vulgaris', 'Pseudomonas aeruginosa', 'Salmonella (Eberthella) typhosa', 'Salmonella schottmuelleri'],
@@ -81,11 +91,10 @@ $(document).ready(function() {
         },
         mode: 'markers+text',
     };
-    
-    
 
     var data2 = [trace3, trace4];
 
+    //layout specifications for trace3 and trace4
     var layout2 = {
         barmode: 'group',
         yaxis: {
@@ -104,8 +113,11 @@ $(document).ready(function() {
         title:'Negative Gram Staining Bacteria vs. the MIC of Streptomycin & Neomycin'
     };
 
+    //plotting the grouped bar chart with the given specifications 
     Plotly.newPlot('graphMIC', data2, layout2, {staticPlot: true});
     
+    //new trace of negative gram staining bacteria and their associated MIC values for penicillin
+    //creates two scatterplots on non-aligned axis 
     var trace5 = {
         x: ['Aerobacter aerogenes', 'Brucella abortus', 'Escherichia coli', 'Klebsiella pneumoniae', 'Mycobacterium tuberculosis', 'Proteus vulgaris', 'Pseudomonas aeruginosa', 'Salmonella (Eberthella) typhosa', 'Salmonella schottmuelleri'],
         y: [870, 1, 100, 850, 800, 3, 850, 1, 10],
@@ -122,7 +134,9 @@ $(document).ready(function() {
             family:  'Raleway, sans-serif'
         },
     };
-
+    
+    //new trace of positive gram staining bacteria and their associated MIC values for penicillin
+    //creates two scatterplots on non-aligned axis 
     var trace6 = {
         x: ['Brucella anthracis', 'Diplococcus pneumoniae',  'Staphylococcus albus', 'Staphylococcus aureus', 'Streptococcus fecalis', 'Streptococcus hemolyticus', 'Streptococcus viridans'],
         y: [.001, .005, .007, .03, 1, .001, .005],
@@ -142,6 +156,7 @@ $(document).ready(function() {
         },
     };
     
+    //creates a solid line at y=1
     var trace7 = {
         x: ['Aerobacter aerogenes', 'Brucella abortus', 'Escherichia coli', 'Klebsiella pneumoniae', 'Mycobacterium tuberculosis', 'Proteus vulgaris', 'Pseudomonas aeruginosa', 'Salmonella (Eberthella) typhosa', 'Salmonella schottmuelleri'],
         y: [1, 1, 1, 1, 1, 1, 1, 1, 1],
@@ -152,6 +167,7 @@ $(document).ready(function() {
         }
     }
     
+    //creates a solid line at y=1
     var trace8 = {
          x: ['Brucella anthracis', 'Diplococcus pneumoniae',  'Staphylococcus albus', 'Staphylococcus aureus', 'Streptococcus fecalis', 'Streptococcus hemolyticus', 'Streptococcus viridans'],
         y: [1, 1, 1, 1, 1, 1, 1],
@@ -166,6 +182,7 @@ $(document).ready(function() {
 
     var data3 = [trace5, trace6, trace7, trace8];
 
+    //layout specifications for trace5, trace6, trace7, trace8
     var layout3 = {
         xaxis: {
             domain: [0, 0.45],
@@ -195,8 +212,7 @@ $(document).ready(function() {
         title:'Negative vs. Positive Gram Staining and Penicillin'
     };
     
+    //plotting the grouped bar chart with the given specifications 
     Plotly.newPlot('graph-gramStain', data3, layout3, {staticPlot: true});
 
-    
-    
 });
