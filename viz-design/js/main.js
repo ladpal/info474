@@ -6,7 +6,10 @@ $(document).ready(function() {
         mode: 'markers+text',
         type: 'scatter',
         name: 'Negative Gram Staining',
-        marker: { size: 10 },
+        marker: { 
+            size: 10,
+            color: "rgb(153, 0, 0)"
+        },
         text: [1, 2, .4, 1.2, 5, .1, 2, .4, .8],
         textposition: 'top center',
         textfont: {
@@ -20,7 +23,10 @@ $(document).ready(function() {
         mode: 'markers+text',
         type: 'scatter',
         name: 'Positive Gram Staining',
-        marker: { size: 10 },
+        marker: { 
+            size: 10,
+            color: 'rgb(0, 102, 51)' 
+        },
         text: [0.01, 11, .1, .03, 1, 14, 10],
         textposition: 'top center',
         textfont: {
@@ -108,7 +114,7 @@ $(document).ready(function() {
         name: 'Negative Gram Staining',
         marker: { 
             size: 10,
-            color: 'rgb(76, 0, 153)'
+            color: 'rgb(153, 0, 0)'
         },
         text: [870, 1, 100, 850, 800, 3, 850, 1, 10],
         textposition: 'top center',
@@ -142,7 +148,7 @@ $(document).ready(function() {
         mode: 'lines',
         name: 'Line which shows where the MIC of 1 is',
         line: {
-            color: 'rgb(255, 0, 0)',
+            color: 'rgb(0, 102, 204)',
         }
     }
     
@@ -154,7 +160,7 @@ $(document).ready(function() {
         yaxis: 'y2',
         name: 'Line which shows where the MIC of 1 is',
         line: {
-            color: 'rgb(255, 0, 0)',
+            color: 'rgb(0, 102, 204)',
         }
     }
 
@@ -177,7 +183,7 @@ $(document).ready(function() {
         },
         yaxis: {
             // range: [0, 15],
-            title: "MIC of Penicilin",
+            title: "MIC of Penicillin",
             tickangle:90
         },
         height:509,
@@ -186,7 +192,7 @@ $(document).ready(function() {
         margin: {                           
             b: 200, t: 40
         },
-        title:'Negative vs. Positive Gram Staining and Penicilin'
+        title:'Negative vs. Positive Gram Staining and Penicillin'
     };
     
     Plotly.newPlot('graph-gramStain', data3, layout3, {staticPlot: true});
