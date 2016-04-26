@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Module 9: Exercise 1</title>
+		<title>Data Exploration</title>
 
 		<!-- Libraries -->
 		<script src="https://code.jquery.com/jquery.min.js"></script>
@@ -15,8 +15,8 @@
 		<link rel="stylesheet" href="css/main.css"/>
 	</head>
 	<body class="container">
-		<h1>Welcome to Module 9 Exercise 1</h1>
-		<p>This exercise challenges you to use <a href = "https://github.com/mbostock/d3/wiki/Layouts" target="_blank">D3 Layout Functions</a> to build a Treemap. In your <code>js/main.js</code> file, do the following:
+		<h1>Bad Drivers: Drivers Involved in Fatal Car Crashes</h1>
+		<!--<p>This exercise challenges you to use <a href = "https://github.com/mbostock/d3/wiki/Layouts" target="_blank">D3 Layout Functions</a> to build a Treemap. In your <code>js/main.js</code> file, do the following:
 		<div class="instructions">
 			<ul>
 				<li>Construct a nest function using <code>d3.nest</code>, and create a variable with your nested data</li>
@@ -24,16 +24,17 @@
 				<li>Write your <code>draw</code> function to bind data, and position elements. Make sure to assign elements class <code>node</code> (see <code>css/main.css</code> to see why). Similarly to how you would set your scales in a draw function, you will have to update your <code>treemap</code> function to reflect the current data.</li>
 				<li>Fill in the event listener such that clicking on the buttons updates the chart.</li>
 			</ul>
-		</div>
+		</div>-->
+        </br> 
 		<div class="btn-group" data-toggle="buttons">
 			<label class="btn btn-primary">
-				<input value="gdp" type="radio" name="options" id="option1" autocomplete="off">GDP Per Capita
+				<input value="speeding" type="radio" name="options" id="option1" autocomplete="off">% Speeding Drivers
 			</label>
 			<label class="btn btn-primary active">
-				<input value="life_expectancy" type="radio" name="options" id="option2" autocomplete="off" checked>Life Expectancy
+				<input value="drunkDriving" type="radio" name="options" id="option2" autocomplete="off" checked>% Alcohol-Impaired Drivers
 			</label>
 			<label class="btn btn-primary active">
-				<input value="fertility_rate" type="radio" name="options" id="option2" autocomplete="off" checked>Fertility Rate
+				<input value="notDistracted" type="radio" name="options" id="option2" autocomplete="off" checked>% Not Distracted Drivers
 			</label>
 		</div>
 		<div id="vis"></div>
