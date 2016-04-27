@@ -1,88 +1,3 @@
-// $(function() {
-// 	// Read in your data. On success, run the rest of your code
-// 	d3.csv('data/bad-drivers.csv', function(error, data){
-// 		// Setting defaults
-// 		var margin = {top: 40, right: 10, bottom: 10, left: 10},
-// 		    width = 960 - margin.left - margin.right,
-// 		    height = 500 - margin.top - margin.bottom;
-
-// 		// variable to visualize
-// 		var measure = 'Percentage Of Drivers Involved In Fatal Collisions Who Were Speeding';
-// 		var color = d3.scale.category10();
-
-// 		// Wrapper div for the chart
-// 		var div = d3.select('#vis')
-// 								.append("div")
-// 								.attr('height', 600)
-// 								.attr('width', 600)
-// 								.style("left", margin.left + "px")
-// 								.style("top", margin.top + "px");
-
-// 		// Function to arrange divs (will be called seperately for entering and updating)
-// 		var position = function() {
-// 			// Set the position of each div using the properties computed from the treemap function
-// 			this.style("left", function(d,i) {return d.x + "px"; })
-// 					.style("top", function(d) { return d.y + "px"; })
-// 					.style('width', function(d){return d.dx + 'px'})
-// 					.style("height", function(d) { return d.dy + "px"; })
-// 					.style("background", function(d) {return !d.values ? color(d.State) : null; })
-// 		}
-
-// 		// Construct a nest function using `d3.nest`, and create a variable with your nested data
-        
-//         var nest = d3.nest() // function that returns a function...              
-//                 .key(function(d){return d.State;});
-                
-//         // Pass your (tabular) data to the nest function to create your nested array 
-//         var nestedData = nest.entries(data);
-//         console.log(nestedData);
-
-// 		// Construct a treemap function that sizes elements based on the current `measure`, and
-// 		// Make sure to specify how to retrieve the `children` from each element
-        
-//         // Construct a treemap function that will retrieve values from your nested data 
-//         var treemap = d3.layout.treemap() // function that returns a function!     
-//             .size([width, height]) // set size: scaling will be done internally     
-//             .sticky(true) // If data changes, keep elements in the same position     
-//             .value(function(d) {return d[measure]}) // Assert value to be used to     
-//             .children(function(d) {return d.values}); // Determine how the function will find the children of each node
-            
-//         // Retrieve the individual nodes from the tree 
-//        // Object to be traversed looking for child elements
-
-
-// 		// Write your `draw` function to bind data, and position elements
-//         var draw = function() {
-        
-//             treemap.value(function(d) {return d[measure];});
-//             var treemapData = treemap.nodes({values:nestedData}); 
-            
-//             var nodes = div.selectAll('.node').data(treemapData);
-
-            
-//             nodes.enter()
-//                  .append('div')
-//                  .attr("class", 'node')
-//                  .text(function(d) {return d.State})
-//                  .call(position);
-                 
-//             nodes.transition().duration(500).call(position);
-//         }
-
-// 		// Call your draw function
-//         draw()
-
-// 		// Listen to change events on the input elements
-// 		$("input").on('change', function() {
-//             measure = $(this).val();
-
-// 			// Draw your elements
-// 			draw();
-			
-// 		});
-
-// 	});
-// });
 
 $(function() {
 	// Read in prepped_data file
@@ -90,7 +5,7 @@ $(function() {
 		// Variables that should be accesible within the namespace
 		var xScale, yScale, currentData;
 
-		// Track the sex (male, female) and drinking type (any, binge) in variables
+		// Track the current constraint in a variable
 		var activity = 'speeding';
 
 		// Margin: how much space to put in the SVG for axes/titles
@@ -105,8 +20,8 @@ $(function() {
 		var height = 600 - margin.bottom - margin.top;
 		var width = 1000 - margin.left - margin.right;
 
-	 	// Select SVG to work with, setting width and height (the vis <div> is defined in the index.html file)
-		var svg = d3.select('#vis')
+	 	// Select SVG to work with, setting width and height
+         var svg = d3.select('#vis')
 			.append('svg')
 			.attr('height', 600)
 			.attr('width', 1000);
@@ -117,22 +32,22 @@ $(function() {
 				.attr('height', height)
 				.attr('width', width);
 
-		// Append an xaxis label to your SVG, specifying the 'transform' attribute to position it (don't call the axis function yet)
+		// Append an xaxis label to your SVG, specifying the 'transform' attribute to position it 
 		var xAxisLabel = svg.append('g')
 												.attr('transform', 'translate(' + margin.left + ',' + (height + margin.top) + ')')
 												.attr('class', 'axis')
 
-		// Append a yaxis label to your SVG, specifying the 'transform' attribute to position it (don't call the axis function yet)
+		// Append a yaxis label to your SVG, specifying the 'transform' attribute to position it 
 		var yAxisLabel = svg.append('g')
 										.attr('class', 'axis')
 										.attr('transform', 'translate(' + margin.left + ',' + (margin.top) + ')')
 
-		// Append text to label the y axis (don't specify the text yet)
+		// Append text to label the y axis 
 		var xAxisText = svg.append('text')
 											 .attr('transform', 'translate(' + (margin.left + width/2) + ',' + (height + margin.top + 40) + ')')
 											 .attr('class', 'title')
 
-		// Append text to label the y axis (don't specify the text yet)
+		// Append text to label the y axis 
 		var yAxisText = svg.append('text')
 											 .attr('transform', 'translate(' + (margin.left - 40) + ',' + (margin.top + height/2) + ') rotate(-90)')
 											 .attr('class', 'title')
@@ -155,12 +70,12 @@ $(function() {
 
 		// Function for setting axes
 		var setAxes = function() {
-			// Define x axis using d3.svg.axis(), assigning the scale as the xScale
+			// Define x axis assigning the scale as the xScale
 			var xAxis = d3.svg.axis()
 						.scale(xScale)
 						.orient('bottom')
 
-			// Define y axis using d3.svg.axis(), assigning the scale as the yScale
+			// Define y axis assigning the scale as the yScale
 			var yAxis = d3.svg.axis()
 						.scale(yScale)
 						.orient('left')
@@ -172,11 +87,12 @@ $(function() {
 			// Call yAxis
 			yAxisLabel.transition().duration(1500).call(yAxis);
 
-			// Update labels
+			// Update labels for x-axis
 			xAxisText.text('State')
             
             var temp = "";
             
+            //check which constraint is selected and update labels accordingly
             if (activity == "notDistracted") {
                 temp += "Not Distracted";
             } else if (activity == "drunkDriving") {
@@ -188,13 +104,12 @@ $(function() {
 			yAxisText.text('Percent Fatal Accidents Where Drivers were ' + temp)
 		}
 
-		// Write a function to filter down the data to the current sex and type
+		// Write a function to filter down the data to the currently selected constraint
 		var filterData = function() {
 			currentData = allData.filter(function(d) {
 				return d[activity]
 			})
 			// Sort the data alphabetically
-			// Hint: http://stackoverflow.com/questions/6712034/sort-array-by-firstname-alphabetically-in-javascript
 			.sort(function(a,b){
 				if(a.State < b.State) return -1;
 				if(a.State > b.State) return 1;
@@ -202,7 +117,7 @@ $(function() {
 			});
 		}
 
-		// Store the data-join in a function: make sure to set the scales and update the axes in your function.
+		// Store the data-join in a function
 		var draw = function(data) {
 			// Set scales
 			setScales(data)
@@ -213,8 +128,7 @@ $(function() {
 			// Select all rects and bind data
 			var bars = g.selectAll('rect').data(data);
 
-			// Use the .enter() method to get your entering elements, and assign initial positions
-            
+			// Use the .enter() method to get your entering elements, and assign initial positions  
             bars.enter().append('rect')
 				.attr('x', function(d){return xScale(d.State)})
 				.attr('y', height)
@@ -241,7 +155,7 @@ $(function() {
 
 		// Assign a change event to input elements to set the sex/type values, then filter and update the data
 		$("input").on('change', function() {
-			// Get value, determine if it is the sex or type controller
+			// grab the selected value from the HTML 
 			activity = $(this).val();
             
 			filterData();
@@ -252,10 +166,7 @@ $(function() {
 		filterData()
 		draw(currentData)
 
-		/* Using jQuery, select all circles and apply a tooltip
-		If you want to use bootstrap, here's a hint:
-		http://stackoverflow.com/questions/14697232/how-do-i-show-a-bootstrap-tooltip-with-an-svg-object
-		*/
+        //append a label to each bar
 		$("rect").tooltip({
 			'container': 'body',
 			'placement': 'top'
