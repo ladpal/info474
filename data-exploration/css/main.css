@@ -9,21 +9,21 @@
 	text-anchor:middle;
 }
 
-.node {
-  border: solid 1px white;
-  font: 10px sans-serif;
-  line-height: 12px;
-  overflow: hidden;
-  position: absolute;
-  text-indent: 2px;
-  color:white;
+.axis text {
+  font-size:10px;
 }
 
-#vis {
-  position:relative;
-  padding-bottom:100px;
+.barSpeed {
+  fill:darkred;
+  opacity:.4;
 }
 
-.btn-group {
-  margin-bottom:20px;
+.barDrunk {
+  fill:orange;
+  opacity:.4;
+}
+
+.barDistract {
+  fill:limegreen;
+  opacity:.4;
 }

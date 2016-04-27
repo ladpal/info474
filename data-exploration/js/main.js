@@ -95,7 +95,7 @@ $(function() {
 
 		// Margin: how much space to put in the SVG for axes/titles
 		var margin = {
-			left:30,
+			left:50,
 			bottom:100,
 			top:50,
 			right:50,
@@ -146,8 +146,8 @@ $(function() {
 			xScale  = d3.scale.ordinal().rangeBands([0, width], .2).domain(states);
 
 			// Get min/max values of the percent data
-			var yMin =d3.min(data, function(d){return +d[activity]});
-			var yMax =d3.max(data, function(d){return +d[activity]});
+			var yMin = d3.min(data, function(d){return +d[activity]});
+			var yMax = d3.max(data, function(d){return +d[activity]});
 
 			// Define the yScale: remember to draw from top to bottom!
 			yScale = d3.scale.linear().range([height, 0]).domain([0, yMax]);
@@ -174,7 +174,18 @@ $(function() {
 
 			// Update labels
 			xAxisText.text('State')
-			yAxisText.text('Percent Fatal Accidents Where Drivers were ' + activity)
+            
+            var temp = "";
+            
+            if (activity == "notDistracted") {
+                temp += "Not Distracted";
+            } else if (activity == "drunkDriving") {
+                temp += "Driving Drunk"
+            } else {
+                temp += "Speeding"
+            }
+            
+			yAxisText.text('Percent Fatal Accidents Where Drivers were ' + temp)
 		}
 
 		// Write a function to filter down the data to the current sex and type
@@ -203,12 +214,13 @@ $(function() {
 			var bars = g.selectAll('rect').data(data);
 
 			// Use the .enter() method to get your entering elements, and assign initial positions
-			bars.enter().append('rect')
+            
+            bars.enter().append('rect')
 				.attr('x', function(d){return xScale(d.State)})
 				.attr('y', height)
 				.attr('height', 0)
 				.attr('width', xScale.rangeBand())
-				.attr('class', 'bar')
+				.attr('class', 'barSpeed')
 				.attr('title', function(d) {return d.State});
 
 			// Use the .exit() and .remove() methods to remove elements that are no longer in the data
@@ -222,7 +234,9 @@ $(function() {
 				.attr('y', function(d){return yScale(d[activity])})
 				.attr('height', function(d) {return height - yScale(d[activity])})
 				.attr('width', xScale.rangeBand())
-				.attr('title', function(d) {return d.State});
+                .attr('class', activity == "drunkDriving" ? "barDrunk" : activity == "notDistracted" ? "barDistract" : "barSpeed")	
+                .attr('title', function(d) {return d.State});
+                console.log(activity)
 		}
 
 		// Assign a change event to input elements to set the sex/type values, then filter and update the data
