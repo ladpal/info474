@@ -67,7 +67,7 @@ var TreeMap = function() {
 			nodes.enter()
 					 .append("div")
 					 .attr('class', 'node')
-					 .text(function(d){return d[label]}) // Set text: a big advantage of using divs over rects
+					 .text(function(d){return d[xValue]}) // Set text: a big advantage of using divs over rects
 				   .call(position); // This prevents a strange transition on enter()
 
 			// Update the nodes
